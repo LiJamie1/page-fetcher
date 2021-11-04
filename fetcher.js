@@ -9,13 +9,12 @@ request(site, (error, response, body) => {
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   // console.log('body:', body); // Print the HTML
 
-  fs.appendFile(path, body, (err) => {
+  fs.writeFile(path, body, (err) => {
     if (err) throw err;
     fs.stat(path, (err, stats) => {
       if (err) throw err;
       console.log(`Downloaded and saved ${stats.size} bytes to ${path}`)
     });
   });
-  
 });
 
